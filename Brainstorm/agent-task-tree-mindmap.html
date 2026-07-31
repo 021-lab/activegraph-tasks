@@ -24,6 +24,7 @@
     --c7:#C9A0C4;  /* интерфейс */
     --c8:#9AA1A8;  /* смежное */
     --c9:#E5C07B;  /* вопросы */
+    --c10:#7FA9A0; /* документы */
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
@@ -338,6 +339,41 @@ const D = [
    {t:"Автоперезапись заметок агентами", k:"?"},
    {t:"Active Graph: риски разработки и справится ли ЛЛМ с реактивным кодом на новых записях графа", k:"?"},
    {t:"Формальная схема данных и API чистого taosmd как замороженная граница своей разработки", k:"?"}
+ ]},
+
+ {c:"--c10", t:"Документы и спецификации", k:"o", ch:[
+   {t:"Канон taosmd + Focus App (актуальный)", k:"o", ch:[
+     {t:"TAOSMD_API_CONTRACT.md, TASK_LIFECYCLE.md, два задания кодеру, 00-INDEX-focus-harness.md", k:"o", n:"021-lab/TaOS@feat/user-statuses, docs/specs/"},
+     {t:"INTEGRATION_taosmd.md (rev 4), CLAUDE.md, README.md, CODER_TASK_storage-module.md", k:"o", n:"021-lab/VoiceList@taosmd-backend"}
+   ]},
+   {t:"Ранняя версия спек Focus App v2 (архивная)", k:"o", ch:[
+     {t:"FOCUS_APP_SPEC.md, CODER_TASK.md, BUILD_PLAN.md, INPUT_HANDLING_UNIFICATION.md", k:"o", n:"021-lab/voice-tasks@v2-taos — предшественник канона в TaOS"},
+     {t:"Полный корпус v2: FOCUS_APP_SPEC, VOICE_INTERFACE, INPUT_HANDLING_STANDARD rev2, USERFLOW_FRONTIER_TEST, TASK_RESOLVER, resolver.js, test_resolver.js", k:"o", n:"архив voice-tasks-specs.tar у пользователя"}
+   ]},
+   {t:"Голосовой ввод и резолвер команд", k:"o", ch:[
+     {t:"INPUT_HANDLING_STANDARD.md rev 3, COMMAND_RESOLVER.md, TASK_RESOLVER.md, PROPOSAL_voice-input.md, BACKLOG.md", k:"o", n:"021-lab/SearchMyData@Voice-list-interface, docs/"},
+     {t:"resolver.js (ESM), command-resolver.js, gesture.js, snapshot-adapter.js, voice-session.js", k:"o", n:"src/"},
+     {t:"test_e2e.js (68 проверок), test_resolver.js, asr-mock.js, gesture-harness.html, gestures.spec.js", k:"o", n:"tests/"},
+     {t:"voice-ci.yml", k:"?", n:"собран локально, не запушен — нет прав workflows у интеграции, разместить вручную"}
+   ]},
+   {t:"Субстрат north star (agent-base)", k:"o", ch:[
+     {t:"NORTH_STAR.md, HANDOFF.md, AGENT_BRIEF.md", k:"o", n:"021-lab/agent-base"},
+     {t:"agent_schema.json (TerminusDB), intent_document.schema.json + routing patterns", k:"o"},
+     {t:"deploy/: Dockerfile, .env.example, docker-compose.prod.yml, DEVOPS.md, verify_deployment.py", k:"o"}
+   ]},
+   {t:"Цикл обучения на Active Graph", k:"o", ch:[
+     {t:"tasks-v1-test-spec.md — тестовая спецификация T1–T10, R1–R7, F1–F21", k:"o", n:"локальный вывод, не запушен в репо"},
+     {t:"agent-learning-system-on-activegraph.md", k:"o", n:"локальный вывод, не запушен в репо"}
+   ]},
+   {t:"Операционный диспетчер (SMB)", k:"o", ch:[
+     {t:"«Диспетчер — архитектура прототипа: данные и контракты» v0.1", k:"o", n:"локальный вывод, репозиторий прототипа ещё не создан"},
+     {t:"Эталонный сценарий (~121 событие)", k:"o", n:"локальный вывод"},
+     {t:"«Диспетчер — спецификация на создание системы» v0.1", k:"o", n:"локальный вывод"}
+   ]},
+   {t:"Ранние прототипы (вне текущего стека)", k:"o", ch:[
+     {t:"test_scenario1.py + requirements.txt + .env.example + README.docx — прототип на Cognee до перехода на taosmd", k:"o", n:"локальный вывод"},
+     {t:"secretary-terminusdb.md, secretary-contract.md — ранний TerminusDB-контракт под именем «Секретарь»", k:"o", n:"локальный вывод"}
+   ]}
  ]}
 ];
 
