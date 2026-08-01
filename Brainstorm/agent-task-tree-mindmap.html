@@ -9,59 +9,29 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#15181B;
-    --bg-2:#1C2024;
-    --line:#2C3238;
-    --ink:#E7E4DC;
-    --ink-dim:#969CA2;
-    --ink-faint:#6B7278;
-    --c1:#E0A458;  /* север */
-    --c2:#5CB8AC;  /* домен */
-    --c3:#A38CE6;  /* обучение */
-    --c4:#D9788C;  /* жизненный цикл */
-    --c5:#8FB26B;  /* стек */
-    --c6:#6FA8DC;  /* память */
-    --c7:#C9A0C4;  /* интерфейс */
-    --c8:#9AA1A8;  /* смежное */
-    --c9:#E5C07B;  /* вопросы */
-    --c10:#7FA9A0; /* документы */
+    --bg:#15181B; --line:#2C3238;
+    --ink:#E7E4DC; --ink-dim:#969CA2; --ink-faint:#6B7278;
+    --c1:#E0A458; --c2:#5CB8AC; --c3:#A38CE6; --c4:#D9788C; --c5:#8FB26B;
+    --c6:#6FA8DC; --c7:#C9A0C4; --c8:#9AA1A8; --c9:#E5C07B; --c10:#7FA9A0;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{
-    background:var(--bg);
-    color:var(--ink);
+    background:var(--bg); color:var(--ink);
     font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    font-size:15px;line-height:1.5;
-    -webkit-text-size-adjust:100%;
-    padding-bottom:64px;
+    font-size:15px; line-height:1.5; -webkit-text-size-adjust:100%; padding-bottom:64px;
   }
-  header{
-    position:sticky;top:0;z-index:10;
-    background:linear-gradient(var(--bg) 72%,rgba(21,24,27,0));
-    padding:20px 18px 14px;
-  }
-  .eyebrow{
-    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--ink-faint);margin:0 0 6px;
-  }
-  h1{
-    font-family:"IBM Plex Serif",Georgia,serif;font-weight:600;
-    font-size:22px;line-height:1.22;margin:0 0 8px;letter-spacing:-.01em;
-  }
-  .datalink{
-    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.04em;
-    margin:0 0 12px;
-  }
+  header{position:sticky;top:0;z-index:10;background:linear-gradient(var(--bg) 72%,rgba(21,24,27,0));padding:20px 18px 14px}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 6px}
+  h1{font-family:"IBM Plex Serif",Georgia,serif;font-weight:600;font-size:22px;line-height:1.22;margin:0 0 8px;letter-spacing:-.01em}
+  .datalink{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.04em;margin:0 0 12px}
   .datalink a{color:var(--c10);text-decoration:none;border-bottom:1px solid rgba(127,169,160,.4)}
   .datalink a:hover{border-bottom-color:var(--c10)}
   .controls{display:flex;gap:8px;flex-wrap:wrap}
   button{
     font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;
-    background:transparent;color:var(--ink-dim);
-    border:1px solid var(--line);border-radius:2px;
-    padding:6px 10px;cursor:pointer;
-    transition:color .15s,border-color .15s;
+    background:transparent;color:var(--ink-dim);border:1px solid var(--line);border-radius:2px;
+    padding:6px 10px;cursor:pointer;transition:color .15s,border-color .15s;
   }
   button:hover,button:focus-visible{color:var(--ink);border-color:var(--ink-faint)}
   button:focus-visible{outline:2px solid var(--c1);outline-offset:2px}
@@ -70,44 +40,30 @@
   main{padding:0 18px}
   ul{list-style:none;margin:0;padding:0}
   li{position:relative}
-
-  /* ── сигнатура: рельса коммитов ── */
   li > ul{
-    margin-left:7px;
-    padding-left:17px;
+    margin-left:7px;padding-left:17px;
     border-left:1px solid var(--branch,var(--line));
     border-left-color:color-mix(in srgb,var(--branch,var(--line)) 34%,transparent);
   }
-  .row{
-    display:flex;gap:9px;align-items:flex-start;
-    padding:5px 0;
-    position:relative;
-  }
+  .row{display:flex;gap:9px;align-items:flex-start;padding:5px 0;position:relative}
   .dot{
-    flex:0 0 auto;width:15px;height:22px;
-    display:flex;align-items:center;justify-content:center;
-    font-family:"IBM Plex Mono",monospace;font-size:11px;
-    color:var(--branch,var(--ink-faint));
-    margin-left:-1px;
+    flex:0 0 auto;width:15px;height:22px;display:flex;align-items:center;justify-content:center;
+    font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--branch,var(--ink-faint));margin-left:-1px;
   }
   li > ul > li > .row > .dot{margin-left:-25px;margin-right:9px}
   .txt{flex:1 1 auto;min-width:0}
 
-  /* уровни */
   .lvl0 > .row{padding:14px 0 6px}
   .lvl0 > .row .label{
-    font-family:"IBM Plex Mono",monospace;
-    font-size:12px;letter-spacing:.13em;text-transform:uppercase;
-    color:var(--branch);font-weight:500;
+    font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--branch);font-weight:500;
   }
   .lvl1 > .row .label{font-weight:600;font-size:14.5px;color:var(--ink)}
-  .lvl2 > .row .label,.lvl3 > .row .label{font-size:14px;color:var(--ink-dim)}
-  .lvl3 > .row .label{font-size:13.5px}
+  .lvl2 > .row .label{font-size:14px;color:var(--ink-dim)}
 
   .toggle{cursor:pointer;user-select:none}
   .toggle .label::after{
-    content:"";display:inline-block;
-    width:0;height:0;margin-left:7px;vertical-align:2px;
+    content:"";display:inline-block;width:0;height:0;margin-left:7px;vertical-align:2px;
     border-left:4px solid var(--ink-faint);
     border-top:3.5px solid transparent;border-bottom:3.5px solid transparent;
     transition:transform .18s ease;transform-origin:2px 50%;
@@ -115,19 +71,15 @@
   .open > .row .toggle .label::after{transform:rotate(90deg)}
   li:not(.open) > ul{display:none}
 
-  .count{
-    font-family:"IBM Plex Mono",monospace;font-size:10px;
-    color:var(--ink-faint);margin-left:6px;
-  }
-  .tagline{
-    font-size:12.5px;color:var(--ink-faint);
-    margin-top:2px;font-style:normal;
-  }
-  mark{
-    background:none;color:var(--branch);font-weight:500;
-  }
+  .count{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--ink-faint);margin-left:6px}
+  .tagline{font-size:12.5px;color:var(--ink-faint);margin-top:2px}
   .kind-x .label{text-decoration:line-through;text-decoration-color:var(--ink-faint);opacity:.72}
   .kind-q .label{color:var(--c9)}
+  #err{
+    margin:20px 18px;padding:14px;border:1px solid var(--line);border-radius:2px;
+    font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-dim);line-height:1.7;
+  }
+  #err code{color:var(--c9)}
 
   footer{
     margin:34px 18px 0;padding-top:14px;border-top:1px solid var(--line);
@@ -142,7 +94,7 @@
 <header>
   <p class="eyebrow">карта проекта · июль 2026</p>
   <h1>Самообучающийся агент<br>над деревом задач</h1>
-  <p class="datalink"><a href="mindmap-data.md">данные для агентов — mindmap-data.md →</a></p>
+  <p class="datalink"><a href="mindmap-data.md">источник данных — mindmap-data.md →</a></p>
   <div class="controls">
     <button id="expand">развернуть всё</button>
     <button id="collapse">свернуть до веток</button>
@@ -154,307 +106,171 @@
 
 <footer>
   <b>◆</b> решение принято &nbsp; <b>○</b> концепция / факт<br>
-  <b>?</b> открытый вопрос &nbsp; <b>✕</b> отклонено или развёрнуто назад
+  <b>?</b> открытый вопрос &nbsp; <b>✕</b> отклонено или развёрнуто назад<br>
+  карта рендерится из mindmap-data.md — правь данные, не HTML
 </footer>
 
 <script>
-const D = [
- {c:"--c1", t:"Север — зачем всё", k:"o", ch:[
-   {t:"Capability-actor система на версионированном графе", k:"o", n:"сообщения агента = коммиты", ch:[
-     {t:"Записанная история взаимодействий = регрессионный сюит", k:"o"},
-     {t:"TerminusDB как исходный кандидат графа", k:"o"}
-   ]},
-   {t:"Безопасное самоулучшение", k:"◆", ch:[
-     {t:"Акторы переписывают себя, чтобы чинить свои ошибки", k:"o"},
-     {t:"Реплей по истории держит инвариант производительности", k:"o"},
-     {t:"Кодер-агент минимизирует промпты акторов при неизменной производительности", k:"o"},
-     {t:"Всё живёт в ветках репозитория", k:"o"},
-     {t:"Кодер-агента пока нет — исключение из гейтов не требуется", k:"?"}
-   ]},
-   {t:"Единый фреймворк под все проекты", k:"◆", n:"wiki · focus app · диспетчер · north star"}
- ]},
+const BRANCH_COLORS = ["--c1","--c2","--c3","--c4","--c5","--c6","--c7","--c8","--c9","--c10"];
+const STATUS_GLYPH = {
+  "решено":"◆", "концепция/факт":"○", "открытый вопрос":"?", "отклонено":"✕"
+};
+const STATUS_CLASS = {
+  "решено":"kind-d", "концепция/факт":"kind-o", "открытый вопрос":"kind-q", "отклонено":"kind-x"
+};
 
- {c:"--c2", t:"Домен — дерево задач", k:"o", ch:[
-   {t:"Сценарий агента", k:"◆", ch:[
-     {t:"Запрос пользователя → найти соответствующий узел", k:"o"},
-     {t:"Собрать контекст из узла и близлежащих узлов", k:"o"},
-     {t:"Исполнить запрос мутацией дерева", k:"o"}
-   ]},
-   {t:"Схема хранения", k:"o", ch:[
-     {t:"Плоский список узлов с полем parent; children не хранится — индекс", k:"o"},
-     {t:"Лог JSONL мутаций — истина (ядро taosmd)", k:"o"},
-     {t:"Проекция в памяти: Map⟨id,node⟩ + Map⟨parent,id[]⟩, реплей при старте", k:"o"},
-     {t:"Снапшот на диске + хвост лога для восстановления", k:"o"},
-     {t:"Вложенный JSON-объект дерева", k:"✕", n:"перемещение = переписывание поддеревьев"},
-     {t:"Materialized path / depth в узле", k:"✕", n:"денормализация, чинить при каждом move"}
-   ]},
-   {t:"Альтернатива под рассмотрением: дерево в текстовом файле", k:"o", n:"файл целиком отдаётся модели → патчи → детерминированное применение"},
-   {t:"Сборка контекста узла", k:"o", ch:[
-     {t:"Предки — по parent до корня («где я нахожусь»)", k:"o"},
-     {t:"Дети — childrenIndex", k:"o"},
-     {t:"Блокеры — blocks + обратный индекс", k:"o"},
-     {t:"Сёстры — дети родителя", k:"o"},
-     {t:"Рендер в markdown, не JSON; ~1–2k токенов на узел", k:"o"},
-     {t:"Как подцепить ветку родителей к семантически найденному узлу?", k:"?", n:"вниз по вложенности работает, вверх — нет"}
-   ]},
-   {t:"Мутации", k:"◆", ch:[
-     {t:"Агент не пишет в хранилище — возвращает типизированную команду", k:"o", n:"move · set_status · rename · create"},
-     {t:"Валидатор перед логом; проверка цикла при move обязательна", k:"o"},
-     {t:"Inbox как служебный элемент", k:"o"}
-   ]}
- ]},
+// --- parse mindmap-data.md into a tree ---
+function parseMarkdown(text){
+  text = text.replace(/^---\n[\s\S]*?\n---\n/, "");
+  const lines = text.split("\n");
+  const branches = [];
+  let current = null;
 
- {c:"--c3", t:"Цикл обучения — ядро", k:"o", ch:[
-   {t:"Append-only лог действий — источник истины", k:"◆", ch:[
-     {t:"Запись = запрос + список мутаций + ответ пользователю", k:"o"},
-     {t:"Все документы и индексы собираются из лога детерминированной программой", k:"o"}
-   ]},
-   {t:"Ход одного запроса", k:"o", ch:[
-     {t:"Агент собирает контекст из релевантных документов", k:"o"},
-     {t:"Выдаёт два структурированных результата: мутации и ответ", k:"o"},
-     {t:"Детерминированный верификатор проверяет мутации по схеме", k:"o"},
-     {t:"Ошибка возвращается агенту", k:"o"},
-     {t:"Политики автоапрува; иначе эскалация апрува пользователю в интерфейсе", k:"o"}
-   ]},
-   {t:"Коррекция и урок", k:"◆", ch:[
-     {t:"Пользователь выбирает запись лога и в диалоге добивается нужного результата", k:"o"},
-     {t:"После явного подтверждения в лог пишется заменяющая запись", k:"o"},
-     {t:"Из коррекции формируется урок — сразу в новую версию промпта агента", k:"o"}
-   ]},
-   {t:"Калибровка промптов (схема из диспетчера)", k:"o", ch:[
-     {t:"DSPy + GEPA как фреймворк; эталон = trainset, метрика с текстовой обратной связью", k:"◆"},
-     {t:"Ф0 smoke на golden-триггерах → отсечь негодную модель до трат", k:"o"},
-     {t:"Ф1 покомпонентная калибровка в изоляции, эталонные входы, keep-best, ≤8 итераций", k:"o"},
-     {t:"Ф2 интеграционный прогон — ловит каскадные расхождения", k:"o"},
-     {t:"Ф3 минимизация промпта при инварианте 100% match", k:"o"},
-     {t:"Ф4 фиксация биндинга, human-gate", k:"o"},
-     {t:"Роли разделены: судья оценивает, prompt-tuner правит, человек принимает", k:"o"},
-     {t:"Промпты = настраиваемые параметры системы; биндинг (агент, model_id), версии vN", k:"o"},
-     {t:"Два режима теста: recorded (фикстуры, каждый PR) и live (на изменение промптов)", k:"o"},
-     {t:"Интерес: опенсорс-фреймворки автоматической оптимизации промптов", k:"o"}
-   ]}
- ]},
-
- {c:"--c4", t:"Жизненный цикл задач и гейты", k:"o", ch:[
-   {t:"Статусная модель", k:"◆", ch:[
-     {t:"open · done→closed · archive→superseded · focus · pause", k:"o"},
-     {t:"focus и pause — нативные статусы в форке (VALID_STATUSES + CHECK)", k:"o"},
-     {t:"Оба исключены из ready и оба блокируют родителей", k:"o"},
-     {t:"focus скрывает соседние ветки, pause скрывает свою; focus приоритетнее", k:"o"},
-     {t:"Миграции нет — таблицы задач пересозданы со сбросом данных", k:"o"},
-     {t:"focus/pause как A2A-тред состояния", k:"✕"}
-   ]},
-   {t:"Фронтир = открытые видимые листья дерева parent-рёбер", k:"o"},
-   {t:"Пайплайн назначенной задачи", k:"◆", ch:[
-     {t:"Назначение агента на задачу фронтира запускает: планирование → апрув → исполнение → приёмка", k:"o"},
-     {t:"Декомпозиция ложится детьми назначенной задачи в общем дереве, видна во фронтире", k:"o"},
-     {t:"Агент берёт только назначенные ему задачи", k:"o"},
-     {t:"focus/pause на агентов не влияют — это вид пользователя", k:"o"}
-   ]},
-   {t:"Гейты", k:"◆", ch:[
-     {t:"Гейт = задача taosmd с исполнителем = user", k:"o"},
-     {t:"Ставятся только там, где необходим человек", k:"o"},
-     {t:"Обязательные plan-approve и ACCEPT на каждом шаге", k:"✕", n:"ревизия июля 2026"},
-     {t:"Пер-действие подтверждения по умолчанию", k:"✕"}
-   ]},
-   {t:"Provenance: честный created_by", k:"o", n:"фронтенд = user; планировщик, воркер, диспетчер подписываются своими именами"}
- ]},
-
- {c:"--c5", t:"Субстрат и стек", k:"o", ch:[
-   {t:"taosmd — выбранный субстрат", k:"◆", ch:[
-     {t:"Архив (единый event-log) = traceability и реплей", k:"o"},
-     {t:"Граф задач = декомпозиция и ready-очередь", k:"o"},
-     {t:"A2A-шина = координация подагентов; a2a-bridge будит локальную сессию", k:"o"},
-     {t:"Форк добавляет GET /tasks/edges и /tasks/{id} со встроенными рёбрами", k:"o"},
-     {t:"Репозитории: 021-lab/TaOS @feat/user-statuses (бэкенд, канон спек в docs/specs/), 021-lab/VoiceList (интеграция)", k:"o"},
-     {t:"Инвариант проекта: слой приложения не хранит данных", k:"o"}
-   ]},
-   {t:"Рантайм и харнес", k:"o", ch:[
-     {t:"Харнес на OpenAI Agents SDK", k:"◆"},
-     {t:"Мультимодельность через LiteLLM-прокси; там же ключи провайдеров и per-agent ключи", k:"o"},
-     {t:"Своя память подключается как MCP-сервис", k:"o"},
-     {t:"Claude Agent SDK", k:"✕", n:"привязка к одному провайдеру"},
-     {t:"Кодовая база SemaClaw", k:"✕", n:"риски использования; оставлен как источник паттернов — git-driven wiki, PermissionBridge, two-phase DAG"},
-     {t:"taOS (jaylfc/taOS) как готовый рантайм — под рассмотрением", k:"?"}
-   ]},
-   {t:"Слои сверху", k:"o", ch:[
-     {t:"DSPy — версии проекций, rebuild, diff и оптимизация вне прода; успешные версии накатываются", k:"◆"},
-     {t:"ActiveGraph — источник паттернов: лог как SOT, determinism contract, fork-and-diff", k:"o"},
-     {t:"Cognee — read-model только под ретривал; ничего своего не хранит, иначе ломается инвариант", k:"o"},
-     {t:"projectmem — ближайший аналог верификатора (гейт pre-action, эвристический)", k:"o"}
-   ]}
- ]},
-
- {c:"--c6", t:"Память", k:"o", ch:[
-   {t:"Две вики по источнику", k:"◆", ch:[
-     {t:"user-wiki — знания о пользователе, он единственный источник истины", k:"o"},
-     {t:"world-wiki — данные из интернета, для поиска и синтеза", k:"o"},
-     {t:"Маппинг на taosmd: namespace user = клеймы пользователя; всё остальное — world", k:"o"}
-   ]},
-   {t:"Проекция как память", k:"◆", ch:[
-     {t:"Недетерминированный LLM-конвертор собирает вики-слой из архива", k:"o"},
-     {t:"Каждый прогон с новыми промптами = версия проекции", k:"o"},
-     {t:"Пользователь сверяет проекцию со своей картиной мира и вносит правки — правки часть памяти", k:"o"},
-     {t:"Штамп версии на уровне прода; промоут = полная пересборка", k:"o"}
-   ]},
-   {t:"Claim inbox: подтверждение и коррекция клеймов", k:"o", n:"три точки входа — inline, дайджест, по ошибке"},
-   {t:"Конфликт = синтез двух источников: агент предлагает резолюцию с уверенностью, пользователь утверждает", k:"o"},
-   {t:"Требование: память как MCP-сервер, документы связаны рёбрами графа, поиск и достройка контекста настраиваемы", k:"o"},
-   {t:"Автоперезапись заметок агентами — не решено", k:"?"}
- ]},
-
- {c:"--c7", t:"Интерфейс — Focus App", k:"o", ch:[
-   {t:"Чистое представление: все задачи в taosmd, фронтир как главный экран", k:"o"},
-   {t:"Голосовая модальность (rev 3)", k:"◆", ch:[
-     {t:"Долгий тап в любой точке → полноэкранный пустой оверлей", k:"o"},
-     {t:"Live-транскрипция сверху, кандидаты команд вверх от пальца, пересчёт по каждому слову", k:"o"},
-     {t:"Отпускание = выбор; точка пальца = сырой транскрипт в интерпретатор; «Отменить» ниже", k:"o"},
-     {t:"Контекст: тап по элементу + сдвиг влево → в интерпретатор уходит id элемента", k:"o"},
-     {t:"Коммит ждёт финальный транскрипт; порядок кандидатов замораживается при движении пальца", k:"o"}
-   ]},
-   {t:"Резолвер", k:"o", ch:[
-     {t:"TASK_RESOLVER.md + resolver.js — чистый JS без зависимостей, тесты зелёные", k:"o"},
-     {t:"Шаблонная грамматика (вариант А): предлог «в» плохо распознаётся, на маркеры слотов опираться нельзя", k:"◆"},
-     {t:"Глагол только в начале фразы; голое существительное командой не является", k:"o"},
-     {t:"Базовый резолвинг — поиск в базе; Θ-резолвер — оптимизация поверх", k:"o"},
-     {t:"Фраза без командного глагола → фолбэк на модель через сервер, результат в лог действий и отменяем", k:"o"}
-   ]},
-   {t:"Голосовые команды пользователя", k:"o", ch:[
-     {t:"Без контекста: «найди»/«покажи» — показать; «добавь»/«нужно»/«мне нужно»/«нужно сделать»/«новая» — новая задача в inbox; «отмени» — undo", k:"o"},
-     {t:"С контекстом: «добавь подзадачу»/«тут сначала нужно»/«добавь блокер»/«подзадача»/«сначала сделать» — подзадача; «перенеси в …»/«сделай подзадачей в …» — сменить родителя; «переименуй …» — редактировать", k:"o"},
-     {t:"Статусные с контекстом: «готово» → Done; «фокус»/«в фокус» → Focus; «сними фокус» → Open; «потом» → Pause; «удали» → Archive (не удаление); «верни в работу» → Open", k:"o"},
-     {t:"Тестовый корпус — 20 пар фраза/контекст/исход", k:"o", n:"docs/COMMAND_RESOLVER.md, 021-lab/SearchMyData@Voice-list-interface"}
-   ]},
-   {t:"Деплой: Cloudflare Pages + Worker-прокси + Tunnel к taosmd на Mac Mini, Cloudflare Access сверху", k:"o"},
-   {t:"Правило работы: сначала деплой, потом тест деплоя с моком голоса, потом ссылка", k:"o"}
- ]},
-
- {c:"--c8", t:"Смежные ветки той же идеи", k:"o", ch:[
-   {t:"Операционный диспетчер для SMB", k:"o", ch:[
-     {t:"Та же тройка: архив как SOT → проекция → реплей эталона как регрессия", k:"o"},
-     {t:"Эталонный сценарий (~121 событие) как приёмочный тест реплея", k:"o"},
-     {t:"Рассматривается перенос прототипа на taOS вместо standalone", k:"?"}
-   ]},
-   {t:"Brain wiki v2 — память для агентов, AI-first; автозахват + синтез противоречий", k:"o"},
-   {t:"Self-distillation: маленькая локальная модель как диспетчер и обогатитель запросов; память в графе, а не в весах", k:"o"}
- ]},
-
- {c:"--c9", t:"Что не решено", k:"o", ch:[
-   {t:"Подцепление родительской ветки при сборке контекста от найденного узла", k:"?"},
-   {t:"Рантайм: готовое продакшен-решение, куда встанут своя память и управление задачами", k:"?"},
-   {t:"Где именно ставить гейты, раз они не обязательны", k:"?"},
-   {t:"Автоперезапись заметок агентами", k:"?"},
-   {t:"Active Graph: риски разработки и справится ли ЛЛМ с реактивным кодом на новых записях графа", k:"?"},
-   {t:"Формальная схема данных и API чистого taosmd как замороженная граница своей разработки", k:"?"}
- ]},
-
- {c:"--c10", t:"Документы и спецификации", k:"o", ch:[
-   {t:"Канон taosmd + Focus App (актуальный)", k:"o", ch:[
-     {t:"TAOSMD_API_CONTRACT.md, TASK_LIFECYCLE.md, два задания кодеру, 00-INDEX-focus-harness.md", k:"o", n:"021-lab/TaOS@feat/user-statuses, docs/specs/"},
-     {t:"INTEGRATION_taosmd.md (rev 4), CLAUDE.md, README.md, CODER_TASK_storage-module.md", k:"o", n:"021-lab/VoiceList@taosmd-backend"}
-   ]},
-   {t:"Ранняя версия спек Focus App v2 (архивная)", k:"o", ch:[
-     {t:"FOCUS_APP_SPEC.md, CODER_TASK.md, BUILD_PLAN.md, INPUT_HANDLING_UNIFICATION.md", k:"o", n:"021-lab/voice-tasks@v2-taos — предшественник канона в TaOS"},
-     {t:"Полный корпус v2: FOCUS_APP_SPEC, VOICE_INTERFACE, INPUT_HANDLING_STANDARD rev2, USERFLOW_FRONTIER_TEST, TASK_RESOLVER, resolver.js, test_resolver.js", k:"o", n:"архив voice-tasks-specs.tar у пользователя"}
-   ]},
-   {t:"Голосовой ввод и резолвер команд", k:"o", ch:[
-     {t:"INPUT_HANDLING_STANDARD.md rev 3, COMMAND_RESOLVER.md, TASK_RESOLVER.md, PROPOSAL_voice-input.md, BACKLOG.md", k:"o", n:"021-lab/SearchMyData@Voice-list-interface, docs/"},
-     {t:"resolver.js (ESM), command-resolver.js, gesture.js, snapshot-adapter.js, voice-session.js", k:"o", n:"src/"},
-     {t:"test_e2e.js (68 проверок), test_resolver.js, asr-mock.js, gesture-harness.html, gestures.spec.js", k:"o", n:"tests/"},
-     {t:"voice-ci.yml", k:"?", n:"собран локально, не запушен — нет прав workflows у интеграции, разместить вручную"}
-   ]},
-   {t:"Субстрат north star (agent-base)", k:"o", ch:[
-     {t:"NORTH_STAR.md, HANDOFF.md, AGENT_BRIEF.md", k:"o", n:"021-lab/agent-base"},
-     {t:"agent_schema.json (TerminusDB), intent_document.schema.json + routing patterns", k:"o"},
-     {t:"deploy/: Dockerfile, .env.example, docker-compose.prod.yml, DEVOPS.md, verify_deployment.py", k:"o"}
-   ]},
-   {t:"Цикл обучения на Active Graph", k:"o", ch:[
-     {t:"tasks-v1-test-spec.md — тестовая спецификация T1–T10, R1–R7, F1–F21", k:"o", n:"локальный вывод, не запушен в репо"},
-     {t:"agent-learning-system-on-activegraph.md", k:"o", n:"локальный вывод, не запушен в репо"}
-   ]},
-   {t:"Операционный диспетчер (SMB)", k:"o", ch:[
-     {t:"«Диспетчер — архитектура прототипа: данные и контракты» v0.1", k:"o", n:"локальный вывод, репозиторий прототипа ещё не создан"},
-     {t:"Эталонный сценарий (~121 событие)", k:"o", n:"локальный вывод"},
-     {t:"«Диспетчер — спецификация на создание системы» v0.1", k:"o", n:"локальный вывод"}
-   ]},
-   {t:"Ранние прототипы (вне текущего стека)", k:"o", ch:[
-     {t:"test_scenario1.py + requirements.txt + .env.example + README.docx — прототип на Cognee до перехода на taosmd", k:"o", n:"локальный вывод"},
-     {t:"secretary-terminusdb.md, secretary-contract.md — ранний TerminusDB-контракт под именем «Секретарь»", k:"o", n:"локальный вывод"}
-   ]}
- ]}
-];
-
-const GLYPH = {"o":"○","◆":"◆","?":"?","✕":"✕"};
-const KIND  = {"◆":"kind-d","o":"kind-o","?":"kind-q","✕":"kind-x"};
-
-function build(nodes, lvl, parentEl){
-  nodes.forEach(n=>{
-    const li=document.createElement("li");
-    li.className="lvl"+lvl+" "+(KIND[n.k]||"kind-o");
-    if(n.c) li.style.setProperty("--branch","var("+n.c+")");
-    if(n.k==="?") li.dataset.q="1";
-
-    const row=document.createElement("div"); row.className="row";
-    const dot=document.createElement("span"); dot.className="dot";
-    dot.textContent=lvl===0 ? "●" : (GLYPH[n.k]||"○");
-    const txt=document.createElement("div"); txt.className="txt";
-
-    const label=document.createElement("div"); label.className="label"; label.textContent=n.t;
-    txt.appendChild(label);
-    if(n.n){const s=document.createElement("div");s.className="tagline";s.textContent=n.n;txt.appendChild(s);}
-
-    row.appendChild(dot); row.appendChild(txt); li.appendChild(row);
-
-    if(n.ch&&n.ch.length){
-      li.classList.add("open");
-      txt.classList.add("toggle");
-      txt.setAttribute("role","button");
-      txt.tabIndex=0;
-      txt.setAttribute("aria-expanded","true");
-      const c=document.createElement("span"); c.className="count"; c.textContent=n.ch.length;
-      label.appendChild(c);
-      const toggle=()=>{
-        li.classList.toggle("open");
-        txt.setAttribute("aria-expanded", li.classList.contains("open"));
-      };
-      txt.addEventListener("click",toggle);
-      txt.addEventListener("keydown",e=>{
-        if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle();}
-      });
-      const ul=document.createElement("ul");
-      build(n.ch, lvl+1, ul);
-      li.appendChild(ul);
+  for (const raw of lines){
+    const line = raw.trimEnd();
+    const h2 = line.match(/^##\s+(.+)$/);
+    if (h2){
+      current = { title: h2[1].trim(), children: [], index: new Map() };
+      branches.push(current);
+      continue;
     }
-    parentEl.appendChild(li);
+    if (!current) continue;
+    const item = line.match(/^-\s+(.+)$/);
+    if (!item) continue;
+
+    let body = item[1];
+
+    let note = null;
+    const noteSplit = body.split(" — примечание: ");
+    if (noteSplit.length > 1){
+      body = noteSplit[0];
+      note = noteSplit.slice(1).join(" — примечание: ").trim();
+    }
+
+    let status = "концепция/факт";
+    const st = body.match(/^(.*?)\s+\[([^\[\]]+)\]\s*$/);
+    if (st){ body = st[1]; status = st[2].trim(); }
+
+    const parts = body.split(" → ").map(s => s.trim()).filter(Boolean);
+    const label = parts[parts.length - 1];
+    const ancestors = parts.slice(0, -1);
+
+    const node = { title: label, status, note, children: [] };
+
+    let container = current.children;
+    let key = "";
+    for (const a of ancestors){
+      key = key ? key + " → " + a : a;
+      const parent = current.index.get(key);
+      if (parent) container = parent.children;
+      else break;
+    }
+    container.push(node);
+
+    current.index.set(parts.join(" → "), node);
+  }
+  return branches;
+}
+
+// --- render ---
+function render(branches, mount){
+  branches.forEach((branch, i) => {
+    const color = BRANCH_COLORS[i % BRANCH_COLORS.length];
+    const li = buildNode({ title: branch.title, status: null, note: null, children: branch.children }, 0);
+    li.style.setProperty("--branch", "var(" + color + ")");
+    mount.appendChild(li);
   });
 }
 
-const tree=document.getElementById("tree");
-build(D,0,tree);
+function buildNode(node, lvl){
+  const li = document.createElement("li");
+  li.className = "lvl" + lvl + " " + (STATUS_CLASS[node.status] || "kind-o");
+  if (node.status === "открытый вопрос") li.dataset.q = "1";
+
+  const row = document.createElement("div"); row.className = "row";
+  const dot = document.createElement("span"); dot.className = "dot";
+  dot.textContent = lvl === 0 ? "●" : (STATUS_GLYPH[node.status] || "○");
+  const txt = document.createElement("div"); txt.className = "txt";
+
+  const label = document.createElement("div"); label.className = "label";
+  label.textContent = node.title;
+  txt.appendChild(label);
+
+  if (node.note){
+    const s = document.createElement("div");
+    s.className = "tagline"; s.textContent = node.note;
+    txt.appendChild(s);
+  }
+
+  row.appendChild(dot); row.appendChild(txt); li.appendChild(row);
+
+  if (node.children && node.children.length){
+    li.classList.add("open");
+    txt.classList.add("toggle");
+    txt.setAttribute("role","button");
+    txt.tabIndex = 0;
+    txt.setAttribute("aria-expanded","true");
+
+    const c = document.createElement("span");
+    c.className = "count"; c.textContent = node.children.length;
+    label.appendChild(c);
+
+    const toggle = () => {
+      li.classList.toggle("open");
+      txt.setAttribute("aria-expanded", li.classList.contains("open"));
+    };
+    txt.addEventListener("click", toggle);
+    txt.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " "){ e.preventDefault(); toggle(); }
+    });
+
+    const ul = document.createElement("ul");
+    node.children.forEach(child => ul.appendChild(buildNode(child, lvl + 1)));
+    li.appendChild(ul);
+  }
+  return li;
+}
+
+// --- controls ---
+const tree = document.getElementById("tree");
 
 function setAll(open, maxLvl){
-  tree.querySelectorAll("li").forEach(li=>{
-    if(!li.querySelector(":scope > ul")) return;
-    const lvl=+[...li.classList].find(c=>c.startsWith("lvl")).slice(3);
+  tree.querySelectorAll("li").forEach(li => {
+    if (!li.querySelector(":scope > ul")) return;
+    const cls = [...li.classList].find(c => /^lvl\d+$/.test(c));
+    const lvl = cls ? +cls.slice(3) : 0;
     const should = open ? true : lvl < maxLvl;
     li.classList.toggle("open", should);
-    const t=li.querySelector(":scope > .row .toggle");
-    if(t) t.setAttribute("aria-expanded", should);
+    const t = li.querySelector(":scope > .row .toggle");
+    if (t) t.setAttribute("aria-expanded", should);
   });
 }
-document.getElementById("expand").onclick=()=>setAll(true);
-document.getElementById("collapse").onclick=()=>setAll(false,0);
+document.getElementById("expand").onclick = () => setAll(true);
+document.getElementById("collapse").onclick = () => setAll(false, 0);
 
-const q=document.getElementById("qonly");
-q.onclick=()=>{
-  const on = q.getAttribute("aria-pressed")!=="true";
+const q = document.getElementById("qonly");
+q.onclick = () => {
+  const on = q.getAttribute("aria-pressed") !== "true";
   q.setAttribute("aria-pressed", on);
-  tree.querySelectorAll("li").forEach(li=>{
-    const hasQ = li.dataset.q==="1" || li.querySelector('[data-q="1"]');
+  tree.querySelectorAll("li").forEach(li => {
+    const hasQ = li.dataset.q === "1" || li.querySelector('[data-q="1"]');
     li.style.display = (!on || hasQ) ? "" : "none";
   });
-  if(on) setAll(true);
+  if (on) setAll(true);
 };
+
+// --- load ---
+fetch("mindmap-data.md", { cache: "no-cache" })
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+  .then(text => render(parseMarkdown(text), tree))
+  .catch(err => {
+    const box = document.createElement("div");
+    box.id = "err";
+    box.innerHTML = "Не удалось загрузить <code>mindmap-data.md</code> (" + err.message + ").<br>" +
+      "Карта рендерится из этого файла, он должен лежать рядом. " +
+      "При открытии по file:// браузер блокирует fetch — открывай через GitHub Pages или локальный сервер.";
+    document.querySelector("main").appendChild(box);
+  });
 </script>
 </body>
 </html>
