@@ -13,20 +13,20 @@
     --ink:#E7E4DC; --ink-dim:#969CA2; --ink-faint:#6B7278;
     --c1:#E0A458; --c2:#5CB8AC; --c3:#A38CE6; --c4:#D9788C; --c5:#8FB26B;
     --c6:#6FA8DC; --c7:#C9A0C4; --c8:#9AA1A8; --c9:#E5C07B; --c10:#7FA9A0;
+    --rec:#D9788C;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{
     background:var(--bg); color:var(--ink);
     font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    font-size:15px; line-height:1.5; -webkit-text-size-adjust:100%; padding-bottom:64px;
+    font-size:15px; line-height:1.5; -webkit-text-size-adjust:100%; padding-bottom:80px;
   }
   header{position:sticky;top:0;z-index:10;background:linear-gradient(var(--bg) 72%,rgba(21,24,27,0));padding:20px 18px 14px}
   .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 6px}
   h1{font-family:"IBM Plex Serif",Georgia,serif;font-weight:600;font-size:22px;line-height:1.22;margin:0 0 8px;letter-spacing:-.01em}
   .datalink{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.04em;margin:0 0 12px}
   .datalink a{color:var(--c10);text-decoration:none;border-bottom:1px solid rgba(127,169,160,.4)}
-  .datalink a:hover{border-bottom-color:var(--c10)}
   .controls{display:flex;gap:8px;flex-wrap:wrap}
   button{
     font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;
@@ -51,7 +51,7 @@
     font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--branch,var(--ink-faint));margin-left:-1px;
   }
   li > ul > li > .row > .dot{margin-left:-25px;margin-right:9px}
-  .txt{flex:1 1 auto;min-width:0}
+  .txt{flex:1 1 auto;min-width:0;-webkit-touch-callout:none}
 
   .lvl0 > .row{padding:14px 0 6px}
   .lvl0 > .row .label{
@@ -75,11 +75,89 @@
   .tagline{font-size:12.5px;color:var(--ink-faint);margin-top:2px}
   .kind-x .label{text-decoration:line-through;text-decoration-color:var(--ink-faint);opacity:.72}
   .kind-q .label{color:var(--c9)}
+
+  li.has-edits > .row > .txt > .label::before{
+    content:"\270E";color:var(--rec);font-size:11px;margin-right:5px;vertical-align:1px;
+  }
+  li.capturing > .row{background:rgba(217,120,140,.10);border-radius:2px}
+
+  #cap{
+    position:fixed;inset:0;z-index:60;display:none;
+    background:rgba(21,24,27,.94);
+    padding:28px 22px;flex-direction:column;justify-content:center;
+  }
+  #cap.on{display:flex}
+  #cap .target{
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px;line-height:1.7;
+  }
+  #cap .target b{color:var(--rec);font-weight:500}
+  #cap .live{
+    font-family:"IBM Plex Serif",Georgia,serif;font-size:23px;line-height:1.35;
+    color:var(--ink);min-height:2.7em;
+  }
+  #cap .live .interim{color:var(--ink-faint)}
+  #cap .hint{
+    margin-top:22px;font-family:"IBM Plex Mono",monospace;font-size:11px;
+    color:var(--ink-faint);letter-spacing:.05em;display:flex;align-items:center;gap:8px;
+  }
+  .pulse{
+    width:8px;height:8px;border-radius:50%;background:var(--rec);
+    animation:pulse 1.1s ease-in-out infinite;flex:0 0 auto;
+  }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+  #accBtn{
+    position:fixed;right:16px;bottom:16px;z-index:50;
+    background:var(--bg);border:1px solid var(--rec);color:var(--rec);
+    padding:9px 13px;border-radius:2px;box-shadow:0 3px 14px rgba(0,0,0,.5);
+    display:none;
+  }
+  #accBtn.on{display:block}
+  #acc{
+    position:fixed;inset:0;z-index:70;display:none;
+    background:var(--bg);overflow-y:auto;padding:20px 18px 90px;
+  }
+  #acc.on{display:block}
+  #acc h2{
+    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-faint);font-weight:500;margin:0 0 16px;
+  }
+  .entry{padding:11px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:flex-start}
+  .entry .body{flex:1 1 auto;min-width:0}
+  .entry .crumb{
+    font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.04em;
+    color:var(--c10);margin-bottom:4px;line-height:1.5;word-break:break-word;
+  }
+  .entry .said{font-size:14.5px;color:var(--ink);word-break:break-word}
+  .entry .del{
+    flex:0 0 auto;background:none;border:none;color:var(--ink-faint);
+    font-size:15px;padding:2px 6px;cursor:pointer;line-height:1;
+  }
+  .entry .del:hover{color:var(--rec)}
+  #accBar{
+    position:fixed;left:0;right:0;bottom:0;z-index:71;display:none;
+    background:var(--bg);border-top:1px solid var(--line);
+    padding:12px 18px calc(12px + env(safe-area-inset-bottom));
+    gap:8px;flex-wrap:wrap;
+  }
+  #accBar.on{display:flex}
+  #copyBtn{border-color:var(--c10);color:var(--c10)}
+  #copyBtn.done{background:var(--c10);color:var(--bg)}
+  .empty{color:var(--ink-faint);font-size:14px;padding:16px 0}
+
   #err{
     margin:20px 18px;padding:14px;border:1px solid var(--line);border-radius:2px;
     font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-dim);line-height:1.7;
   }
   #err code{color:var(--c9)}
+  #toast{
+    position:fixed;left:50%;bottom:74px;transform:translateX(-50%);z-index:80;
+    background:var(--line);color:var(--ink);padding:8px 14px;border-radius:2px;
+    font-family:"IBM Plex Mono",monospace;font-size:11px;opacity:0;
+    transition:opacity .2s;pointer-events:none;max-width:92vw;
+  }
+  #toast.on{opacity:1}
 
   footer{
     margin:34px 18px 0;padding-top:14px;border-top:1px solid var(--line);
@@ -87,7 +165,7 @@
     color:var(--ink-faint);letter-spacing:.03em;
   }
   footer b{color:var(--ink-dim);font-weight:500}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -105,79 +183,77 @@
 <main><ul id="tree"></ul></main>
 
 <footer>
-  <b>◆</b> решение принято &nbsp; <b>○</b> концепция / факт<br>
-  <b>?</b> открытый вопрос &nbsp; <b>✕</b> отклонено или развёрнуто назад<br>
+  <b>&#9670;</b> решение принято &nbsp; <b>&#9675;</b> концепция / факт<br>
+  <b>?</b> открытый вопрос &nbsp; <b>&#10005;</b> отклонено или развёрнуто назад<br>
+  тап — свернуть узел &middot; долгое нажатие — надиктовать правку<br>
   карта рендерится из mindmap-data.md — правь данные, не HTML
 </footer>
 
+<div id="cap">
+  <div class="target"></div>
+  <div class="live"></div>
+  <div class="hint"><span class="pulse"></span><span class="hinttext">отпустите — правка сохранится</span></div>
+</div>
+
+<button id="accBtn">правок: <span id="accN">0</span></button>
+
+<div id="acc">
+  <h2>накопитель правок</h2>
+  <div id="accList"></div>
+</div>
+<div id="accBar">
+  <button id="copyBtn">скопировать всё</button>
+  <button id="closeAcc">закрыть</button>
+  <button id="clearAcc">очистить</button>
+</div>
+
+<div id="toast"></div>
+
 <script>
 const BRANCH_COLORS = ["--c1","--c2","--c3","--c4","--c5","--c6","--c7","--c8","--c9","--c10"];
-const STATUS_GLYPH = {
-  "решено":"◆", "концепция/факт":"○", "открытый вопрос":"?", "отклонено":"✕"
-};
-const STATUS_CLASS = {
-  "решено":"kind-d", "концепция/факт":"kind-o", "открытый вопрос":"kind-q", "отклонено":"kind-x"
-};
+const STATUS_GLYPH = {"решено":"\u25C6","концепция/факт":"\u25CB","открытый вопрос":"?","отклонено":"\u2715"};
+const STATUS_CLASS = {"решено":"kind-d","концепция/факт":"kind-o","открытый вопрос":"kind-q","отклонено":"kind-x"};
 
-// --- parse mindmap-data.md into a tree ---
+/* ---------- данные ---------- */
 function parseMarkdown(text){
   text = text.replace(/^---\n[\s\S]*?\n---\n/, "");
-  const lines = text.split("\n");
-  const branches = [];
-  let current = null;
-
-  for (const raw of lines){
+  const branches = []; let current = null;
+  for (const raw of text.split("\n")){
     const line = raw.trimEnd();
     const h2 = line.match(/^##\s+(.+)$/);
-    if (h2){
-      current = { title: h2[1].trim(), children: [], index: new Map() };
-      branches.push(current);
-      continue;
-    }
+    if (h2){ current = { title:h2[1].trim(), children:[], index:new Map() }; branches.push(current); continue; }
     if (!current) continue;
     const item = line.match(/^-\s+(.+)$/);
     if (!item) continue;
 
-    let body = item[1];
-
-    let note = null;
-    const noteSplit = body.split(" — примечание: ");
-    if (noteSplit.length > 1){
-      body = noteSplit[0];
-      note = noteSplit.slice(1).join(" — примечание: ").trim();
-    }
+    let body = item[1], note = null;
+    const ns = body.split(" — примечание: ");
+    if (ns.length > 1){ body = ns[0]; note = ns.slice(1).join(" — примечание: ").trim(); }
 
     let status = "концепция/факт";
     const st = body.match(/^(.*?)\s+\[([^\[\]]+)\]\s*$/);
     if (st){ body = st[1]; status = st[2].trim(); }
 
     const parts = body.split(" → ").map(s => s.trim()).filter(Boolean);
-    const label = parts[parts.length - 1];
-    const ancestors = parts.slice(0, -1);
+    const node = { title: parts[parts.length-1], status: status, note: note, children: [] };
 
-    const node = { title: label, status, note, children: [] };
-
-    let container = current.children;
-    let key = "";
-    for (const a of ancestors){
+    let container = current.children, key = "";
+    for (const a of parts.slice(0,-1)){
       key = key ? key + " → " + a : a;
-      const parent = current.index.get(key);
-      if (parent) container = parent.children;
-      else break;
+      const p = current.index.get(key);
+      if (p) container = p.children; else break;
     }
     container.push(node);
-
     current.index.set(parts.join(" → "), node);
   }
   return branches;
 }
 
-// --- render ---
+/* ---------- рендер ---------- */
 function render(branches, mount){
-  branches.forEach((branch, i) => {
-    const color = BRANCH_COLORS[i % BRANCH_COLORS.length];
-    const li = buildNode({ title: branch.title, status: null, note: null, children: branch.children }, 0);
-    li.style.setProperty("--branch", "var(" + color + ")");
+  branches.forEach(function(b, i){
+    const li = buildNode({ title:b.title, status:null, note:null, children:b.children }, 0);
+    li.style.setProperty("--branch", "var(" + BRANCH_COLORS[i % BRANCH_COLORS.length] + ")");
     mount.appendChild(li);
   });
 }
@@ -186,10 +262,11 @@ function buildNode(node, lvl){
   const li = document.createElement("li");
   li.className = "lvl" + lvl + " " + (STATUS_CLASS[node.status] || "kind-o");
   if (node.status === "открытый вопрос") li.dataset.q = "1";
+  li.dataset.title = node.title;
 
   const row = document.createElement("div"); row.className = "row";
   const dot = document.createElement("span"); dot.className = "dot";
-  dot.textContent = lvl === 0 ? "●" : (STATUS_GLYPH[node.status] || "○");
+  dot.textContent = lvl === 0 ? "\u25CF" : (STATUS_GLYPH[node.status] || "\u25CB");
   const txt = document.createElement("div"); txt.className = "txt";
 
   const label = document.createElement("div"); label.className = "label";
@@ -197,47 +274,262 @@ function buildNode(node, lvl){
   txt.appendChild(label);
 
   if (node.note){
-    const s = document.createElement("div");
-    s.className = "tagline"; s.textContent = node.note;
-    txt.appendChild(s);
+    const s = document.createElement("div"); s.className = "tagline";
+    s.textContent = node.note; txt.appendChild(s);
   }
 
   row.appendChild(dot); row.appendChild(txt); li.appendChild(row);
+  attachCapture(txt, li);
 
   if (node.children && node.children.length){
     li.classList.add("open");
     txt.classList.add("toggle");
-    txt.setAttribute("role","button");
-    txt.tabIndex = 0;
+    txt.setAttribute("role","button"); txt.tabIndex = 0;
     txt.setAttribute("aria-expanded","true");
 
     const c = document.createElement("span");
     c.className = "count"; c.textContent = node.children.length;
     label.appendChild(c);
 
-    const toggle = () => {
+    const toggle = function(){
       li.classList.toggle("open");
       txt.setAttribute("aria-expanded", li.classList.contains("open"));
     };
-    txt.addEventListener("click", toggle);
-    txt.addEventListener("keydown", e => {
+    txt.addEventListener("click", function(){
+      if (suppressClick){ suppressClick = false; return; }
+      toggle();
+    });
+    txt.addEventListener("keydown", function(e){
       if (e.key === "Enter" || e.key === " "){ e.preventDefault(); toggle(); }
     });
 
     const ul = document.createElement("ul");
-    node.children.forEach(child => ul.appendChild(buildNode(child, lvl + 1)));
+    node.children.forEach(function(ch){ ul.appendChild(buildNode(ch, lvl + 1)); });
     li.appendChild(ul);
   }
   return li;
 }
 
-// --- controls ---
+/* ---------- модуль правок ---------- */
+const STORE = "mindmap-edits-v1";
+let edits = [];
+try { edits = JSON.parse(localStorage.getItem(STORE) || "[]"); } catch(e){ edits = []; }
+
+function persist(){
+  try { localStorage.setItem(STORE, JSON.stringify(edits)); } catch(e){}
+}
+
+function breadcrumbOf(li){
+  const parts = []; let cur = li;
+  while (cur && cur.tagName === "LI"){
+    if (cur.dataset.title) parts.unshift(cur.dataset.title);
+    cur = cur.parentElement ? cur.parentElement.closest("li") : null;
+  }
+  return parts;
+}
+
+function markEdited(){
+  document.querySelectorAll("li.has-edits").forEach(function(li){ li.classList.remove("has-edits"); });
+  const paths = new Set(edits.map(function(e){ return e.path.join(" → "); }));
+  document.querySelectorAll("#tree li").forEach(function(li){
+    if (paths.has(breadcrumbOf(li).join(" → "))) li.classList.add("has-edits");
+  });
+}
+
+function refreshAcc(){
+  document.getElementById("accN").textContent = edits.length;
+  document.getElementById("accBtn").classList.toggle("on", edits.length > 0);
+
+  const list = document.getElementById("accList");
+  list.innerHTML = "";
+  if (!edits.length){
+    const d = document.createElement("div");
+    d.className = "empty";
+    d.textContent = "Пусто. Зажми узел карты и надиктуй правку.";
+    list.appendChild(d);
+    return;
+  }
+  edits.forEach(function(e, i){
+    const row = document.createElement("div"); row.className = "entry";
+    const body = document.createElement("div"); body.className = "body";
+    const cr = document.createElement("div"); cr.className = "crumb"; cr.textContent = e.path.join(" → ");
+    const sd = document.createElement("div"); sd.className = "said"; sd.textContent = e.text;
+    body.appendChild(cr); body.appendChild(sd);
+    const del = document.createElement("button");
+    del.className = "del"; del.textContent = "\u00D7";
+    del.setAttribute("aria-label","удалить правку");
+    del.onclick = function(){ edits.splice(i,1); persist(); refreshAcc(); markEdited(); };
+    row.appendChild(body); row.appendChild(del);
+    list.appendChild(row);
+  });
+}
+
+function asText(){
+  return "Правки к карте (mindmap-data.md):\n\n" +
+    edits.map(function(e){ return "- [" + e.path.join(" → ") + "] " + e.text; }).join("\n") + "\n";
+}
+
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("on");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(function(){ t.classList.remove("on"); }, 1900);
+}
+
+/* --- захват голоса --- */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const cap = document.getElementById("cap");
+const capTarget = cap.querySelector(".target");
+const capLive = cap.querySelector(".live");
+const capHint = cap.querySelector(".hinttext");
+
+let holdTimer = null, suppressClick = false;
+let recog = null, finalTx = "", interimTx = "", activeLi = null;
+
+function attachCapture(txt, li){
+  txt.addEventListener("pointerdown", function(e){
+    if (e.button !== undefined && e.button !== 0) return;
+    holdTimer = setTimeout(function(){
+      holdTimer = null;
+      startCapture(li);
+    }, 450);
+  });
+  ["pointerup","pointercancel","pointerleave"].forEach(function(ev){
+    txt.addEventListener(ev, function(){
+      if (holdTimer){ clearTimeout(holdTimer); holdTimer = null; return; }
+      if (activeLi === li) endCapture();
+    });
+  });
+  txt.addEventListener("contextmenu", function(e){ if (activeLi) e.preventDefault(); });
+}
+
+function startCapture(li){
+  activeLi = li; suppressClick = true;
+  finalTx = ""; interimTx = "";
+
+  const path = breadcrumbOf(li);
+  capTarget.innerHTML = "";
+  path.forEach(function(p, i){
+    if (i) capTarget.appendChild(document.createTextNode(" → "));
+    const el = document.createElement(i === path.length - 1 ? "b" : "span");
+    el.textContent = p;
+    capTarget.appendChild(el);
+  });
+  capLive.textContent = "";
+  capHint.textContent = "отпустите — правка сохранится";
+  cap.classList.add("on");
+  li.classList.add("capturing");
+  if (navigator.vibrate) navigator.vibrate(12);
+
+  if (!SR){
+    capHint.textContent = "распознавание недоступно — отпустите и введите текстом";
+    return;
+  }
+  try {
+    recog = new SR();
+    recog.lang = "ru-RU";
+    recog.continuous = true;
+    recog.interimResults = true;
+    recog.onresult = function(ev){
+      interimTx = "";
+      for (let i = ev.resultIndex; i < ev.results.length; i++){
+        const r = ev.results[i];
+        if (r.isFinal) finalTx += r[0].transcript; else interimTx += r[0].transcript;
+      }
+      capLive.textContent = finalTx;
+      if (interimTx){
+        const s = document.createElement("span");
+        s.className = "interim"; s.textContent = interimTx;
+        capLive.appendChild(s);
+      }
+    };
+    recog.onerror = function(ev){
+      capHint.textContent = ev.error === "not-allowed"
+        ? "нет доступа к микрофону — разреши в настройках сайта"
+        : "ошибка распознавания: " + ev.error;
+    };
+    recog.start();
+  } catch(e){
+    capHint.textContent = "не удалось запустить запись";
+  }
+}
+
+function endCapture(){
+  const li = activeLi;
+  activeLi = null;
+  cap.classList.remove("on");
+  if (li) li.classList.remove("capturing");
+
+  const hadRecog = !!recog;
+  if (recog){ try { recog.stop(); } catch(e){} }
+  recog = null;
+
+  setTimeout(function(){
+    const text = (finalTx + " " + interimTx).replace(/\s+/g," ").trim();
+    if (!li) return;
+    if (!text){ askTyped(li); return; }
+    commit(li, text);
+  }, hadRecog ? 280 : 0);
+}
+
+function askTyped(li){
+  const v = prompt("Правка к узлу «" + (li.dataset.title || "") + "»:", "");
+  if (v && v.trim()) commit(li, v.trim());
+  else toast("пусто — правка не сохранена");
+}
+
+function commit(li, text){
+  edits.push({ path: breadcrumbOf(li), text: text, at: Date.now() });
+  persist(); refreshAcc(); markEdited();
+  toast("правка добавлена · всего " + edits.length);
+}
+
+/* --- панель накопителя --- */
+const accEl = document.getElementById("acc");
+const accBar = document.getElementById("accBar");
+function openAcc(on){
+  accEl.classList.toggle("on", on);
+  accBar.classList.toggle("on", on);
+  if (on) refreshAcc();
+}
+document.getElementById("accBtn").onclick = function(){ openAcc(true); };
+document.getElementById("closeAcc").onclick = function(){ openAcc(false); };
+document.getElementById("clearAcc").onclick = function(){
+  if (!edits.length) return;
+  if (confirm("Удалить все правки (" + edits.length + ")?")){
+    edits = []; persist(); refreshAcc(); markEdited(); toast("накопитель очищен");
+  }
+};
+document.getElementById("copyBtn").onclick = function(){
+  if (!edits.length){ toast("нечего копировать"); return; }
+  const text = asText();
+  const btn = document.getElementById("copyBtn");
+  const done = function(){
+    btn.classList.add("done"); btn.textContent = "скопировано \u2713";
+    setTimeout(function(){ btn.classList.remove("done"); btn.textContent = "скопировать всё"; }, 1600);
+  };
+  const fallback = function(){
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    let ok = false;
+    try { ok = document.execCommand("copy"); } catch(e){}
+    ta.remove();
+    if (ok) done(); else prompt("Скопируй вручную:", text);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(fallback);
+  } else fallback();
+};
+document.addEventListener("keydown", function(e){ if (e.key === "Escape") openAcc(false); });
+
+/* ---------- управление деревом ---------- */
 const tree = document.getElementById("tree");
 
 function setAll(open, maxLvl){
-  tree.querySelectorAll("li").forEach(li => {
+  tree.querySelectorAll("li").forEach(function(li){
     if (!li.querySelector(":scope > ul")) return;
-    const cls = [...li.classList].find(c => /^lvl\d+$/.test(c));
+    const cls = [].slice.call(li.classList).find(function(c){ return /^lvl\d+$/.test(c); });
     const lvl = cls ? +cls.slice(3) : 0;
     const should = open ? true : lvl < maxLvl;
     li.classList.toggle("open", should);
@@ -245,31 +537,32 @@ function setAll(open, maxLvl){
     if (t) t.setAttribute("aria-expanded", should);
   });
 }
-document.getElementById("expand").onclick = () => setAll(true);
-document.getElementById("collapse").onclick = () => setAll(false, 0);
+document.getElementById("expand").onclick = function(){ setAll(true); };
+document.getElementById("collapse").onclick = function(){ setAll(false, 0); };
 
 const q = document.getElementById("qonly");
-q.onclick = () => {
+q.onclick = function(){
   const on = q.getAttribute("aria-pressed") !== "true";
   q.setAttribute("aria-pressed", on);
-  tree.querySelectorAll("li").forEach(li => {
+  tree.querySelectorAll("li").forEach(function(li){
     const hasQ = li.dataset.q === "1" || li.querySelector('[data-q="1"]');
     li.style.display = (!on || hasQ) ? "" : "none";
   });
   if (on) setAll(true);
 };
 
-// --- load ---
+/* ---------- загрузка ---------- */
 fetch("mindmap-data.md", { cache: "no-cache" })
-  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
-  .then(text => render(parseMarkdown(text), tree))
-  .catch(err => {
+  .then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+  .then(function(text){ render(parseMarkdown(text), tree); refreshAcc(); markEdited(); })
+  .catch(function(err){
     const box = document.createElement("div");
     box.id = "err";
     box.innerHTML = "Не удалось загрузить <code>mindmap-data.md</code> (" + err.message + ").<br>" +
       "Карта рендерится из этого файла, он должен лежать рядом. " +
       "При открытии по file:// браузер блокирует fetch — открывай через GitHub Pages или локальный сервер.";
     document.querySelector("main").appendChild(box);
+    refreshAcc();
   });
 </script>
 </body>
