@@ -1,0 +1,2 @@
+Disable Jekyll on GitHub Pages so .md files are served as static files.
+Without this, Pages converts mindmap-data.md into .html and the map's fetch returns 404.
